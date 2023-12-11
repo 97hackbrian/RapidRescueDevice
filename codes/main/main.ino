@@ -94,14 +94,14 @@ void loop()
   Serial.print(F(", Y: "));
   Serial.println(derivativeY);
   String smsMessage = "Accidente detectado, MENSAJE DE ALERTA!\n";
-  smsMessage += "Con un cambio de velocidad en X de: " + String(derivativeX, 2) + "\n";
-  smsMessage += "Con un cambio de velocidad en Y de: " + String(derivativeY, 2);
+  smsMessage += "Con un cambio de aceleración en X de: " + String(derivativeX, 2) + "\n";
+  smsMessage += "Con un cambio de aceleración en Y de: " + String(derivativeY, 2);
   char smsBuffer[250];
   smsMessage.toCharArray(smsBuffer, sizeof(smsBuffer));
   // Check for collision
   if (abs(derivativeX) >= threshold || abs(derivativeY) >= threshold) {
     char callerIDbuffer[32];  //we'll store the SMS sender number in here
-    strcpy(callerIDbuffer, "+59174070070");
+    strcpy(callerIDbuffer, "+59178627162");
     Serial.println("Por enviar....");
     delay(2000);
     if (!sim800l.sendSMS(callerIDbuffer, smsBuffer)) {
